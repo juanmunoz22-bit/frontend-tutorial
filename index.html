@@ -4,10 +4,21 @@
     <title>Frontend Tutorial</title>
 </head>
 <body>
+
+    <select>
+        <option value="">Raza 1</option>
+        <option value="">Raza 2</option>
+        <option value="">Raza 3</option>
+    </select>
+
     <script>
         fetch('https://dog.ceo/api/breeds/list/all')
             .then(response => response.json())
-            
+            .then(data => {
+                console.log(data);
+            });
+
+
     </script>
 </body>
 </html>
