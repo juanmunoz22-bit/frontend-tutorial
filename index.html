@@ -1,24 +1,54 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Frontend Tutorial</title>
 </head>
-<body>
 
-    <select>
-        <option value="">Raza 1</option>
-        <option value="">Raza 2</option>
-        <option value="">Raza 3</option>
+<body>
+    <select id="species-select">
+        <option value="dogs">Dogs</option>
+        <option value="cats">Cats</option>
     </select>
 
+    <select id="breed-select">
+    </select>
+
+    <button id="show-random-image">Show</button>
+
+    <img src="" alt="" id="pet-image">
+    
+
     <script>
-        fetch('https://dog.ceo/api/breeds/list/all')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
+
+        document.getElementById("species-select").addEventListener("click", () => {
+            let species = document.getElementById("species-select").value;
+            if (species === "dogs") {
+            }else{
+            }
+        });
+
+        fetch("https://dog.ceo/api/breeds/list/all")
+            .then((response) => response.json())
+            .then((data) => {
+                let breeds = Object.keys(data["message"]);
+
+                let breedSelect = document.getElementById("breed-select");
+
+                breeds.map(breed => {
+                    let option = document.createElement("option");
+                    option.value = breed;
+                    option.innerText = breed;
+                    breedSelect.appendChild(option);
+                });
             });
 
+            document.getElementById("show-random-image").addEventListener("click", () => {
+                let breed = document.getElementById("breed-select").value;
 
+                fetch('https://dog.ceo/api/breed/${breed}/images/random')
+            })
     </script>
 </body>
+
 </html>
